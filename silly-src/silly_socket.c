@@ -23,9 +23,7 @@
 #if EAGAIN == EWOULDBLOCK
 #define ETRYAGAIN EAGAIN
 #else
-#define ETRYAGAIN \
-EAGAIN:           \
-	case EWOULDBLOCK
+#define ETRYAGAIN EAGAIN : case EWOULDBLOCK
 #endif
 
 #ifdef __WIN32

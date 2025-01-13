@@ -175,7 +175,10 @@ typedef struct _UNICODE_STRING {
 	PWSTR Buffer;
 } UNICODE_STRING, *PUNICODE_STRING;
 
-#define RTL_CONSTANT_STRING(s) { sizeof(s) - sizeof((s)[0]), sizeof(s), s }
+#define RTL_CONSTANT_STRING(s)                           \
+	{                                                \
+		sizeof(s) - sizeof((s)[0]), sizeof(s), s \
+	}
 
 typedef struct _OBJECT_ATTRIBUTES {
 	ULONG Length;
@@ -186,8 +189,11 @@ typedef struct _OBJECT_ATTRIBUTES {
 	PVOID SecurityQualityOfService;
 } OBJECT_ATTRIBUTES, *POBJECT_ATTRIBUTES;
 
-#define RTL_CONSTANT_OBJECT_ATTRIBUTES(ObjectName, Attributes) \
-	{ sizeof(OBJECT_ATTRIBUTES), NULL, ObjectName, Attributes, NULL, NULL }
+#define RTL_CONSTANT_OBJECT_ATTRIBUTES(ObjectName, Attributes)                 \
+	{                                                                      \
+		sizeof(OBJECT_ATTRIBUTES), NULL, ObjectName, Attributes, NULL, \
+			NULL                                                   \
+	}
 
 #ifndef FILE_OPEN
 #define FILE_OPEN 0x00000001UL

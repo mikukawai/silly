@@ -82,7 +82,8 @@ static void dispatch(lua_State *L, struct silly_message *sm)
 		break;
 	case SILLY_STDIN:
 		if (tostdin(sm)->size > 0) {
-			lua_pushlstring(L, (const char *)tostdin(sm)->data, tostdin(sm)->size);
+			lua_pushlstring(L, (const char *)tostdin(sm)->data,
+					tostdin(sm)->size);
 		} else {
 			lua_pushnil(L);
 		}
@@ -192,7 +193,10 @@ static int ltimercancel(lua_State *L)
 
 static int lsignalmap(lua_State *L)
 {
-#define SIG_NAME(name) { #name, name }
+#define SIG_NAME(name)      \
+	{                   \
+		#name, name \
+	}
 	size_t i;
 	lua_newtable(L);
 	struct signal {
